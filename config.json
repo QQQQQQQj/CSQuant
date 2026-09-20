@@ -1,0 +1,91 @@
+{
+  "model_version": "signal-v1.0.0",
+  "blend": { "item": 0.6, "market": 0.4 },
+  "market_weights": {
+    "trend": 0.25,
+    "breadth": 0.20,
+    "liquidity": 0.20,
+    "supply_demand": 0.15,
+    "cross_platform": 0.10,
+    "event_sentiment": 0.10
+  },
+  "market_regime_bands": [
+    [0, 20, "extreme_fear", "极度恐慌"],
+    [20, 40, "bearish", "偏空"],
+    [40, 60, "neutral", "震荡"],
+    [60, 80, "bullish", "偏多"],
+    [80, 101, "extreme_greed", "极度贪婪"]
+  ],
+  "item_weights": {
+    "trend": 0.20,
+    "relative_strength": 0.15,
+    "supply_demand": 0.20,
+    "volume": 0.15,
+    "liquidity": 0.10,
+    "cross_platform": 0.10,
+    "valuation": 0.05,
+    "event": 0.05
+  },
+  "signal_thresholds": { "buy": 75.0, "sell": 45.0, "min_confidence": 0.4 },
+  "confidence_weights": { "agreement": 0.45, "data_quality": 0.30, "sample": 0.25 },
+  "risk_bands": {
+    "volatility": { "low": 0.03, "high": 0.10 },
+    "spread": { "low": 0.02, "high": 0.08 },
+    "price": { "low": 50.0, "high": 2000.0 }
+  },
+  "position_matrix": {
+    "L": { "high_conf": 0.15, "mid_conf": 0.08, "low_conf": 0.0 },
+    "M": { "high_conf": 0.08, "mid_conf": 0.04, "low_conf": 0.0 },
+    "H": { "high_conf": 0.03, "mid_conf": 0.0, "low_conf": 0.0 }
+  },
+  "fee_table": {
+    "STEAM": { "rate": 0.15, "note": "Steam市场约15%(含游戏费)，精算用 fees.calculate_after_fee" },
+    "BUFF": { "rate": 0.025, "withdraw_rate": 0.01, "note": "待验证" },
+    "UUYP": { "rate": 0.02, "note": "待验证" }
+  },
+  "slippage_bands": { "high_liquidity": 0.005, "mid_liquidity": 0.01, "low_liquidity": 0.03 },
+  "backtest": {
+    "init_cash": 100000.0,
+    "liquidity_filter_min_volume": 3,
+    "max_position_per_item": 0.2
+  },
+  "alert": {
+    "enabled": true,
+    "evaluate_interval_sec": 600,
+    "default_cooldown_min": 60
+  },
+  "market_anomaly": {
+    "universe": {
+      "min_sell_count": 5, "min_buy_count": 3, "min_price": 1.0,
+      "min_liquidity_score": 40.0, "tier_a_liquidity": 75.0,
+      "tier_a_volume": 50, "tier_b_liquidity": 55.0
+    },
+    "thresholds": {},
+    "broadcast_gate": {
+      "min_anomaly_score": 75.0, "min_confidence": 0.70,
+      "min_liquidity_score": 60.0, "major_anomaly_score": 90.0
+    },
+    "cooldown_min": 120,
+    "top_interval_min": 60,
+    "detect_interval_sec": 600,
+    "universe_refresh_sec": 21600,
+    "stale_sec": 7200,
+    "scan_interval_sec": 300,
+    "scan_batch_size": 100,
+    "scan_max_batches": 3,
+    "tier_b_every": 3,
+    "rotation_size": 100,
+    "promote_minutes": 120
+  },
+  "collect": {
+    "quotes_interval_sec": 300,
+    "market_index_interval_sec": 300,
+    "inventory_interval_sec": 900,
+    "score_interval_sec": 1800,
+    "kline_interval_sec": 3600,
+    "csqaq_rate_per_sec": 1.0,
+    "steamdt_batch_per_min": 1,
+    "steam_rate_per_sec": 0.4,
+    "verify_sample_size": 50
+  }
+}

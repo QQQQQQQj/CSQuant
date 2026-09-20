@@ -1,0 +1,15 @@
+# CSQuant V1 部署依赖
+# 核心逻辑（采集/评分/信号/回测）仅依赖 requests 即可运行；
+# 以下为完整部署（Dashboard/调度/回测增强）推荐依赖。
+requests>=2.31.0
+
+# Dashboard（V1）
+streamlit>=1.35.0
+plotly>=5.20.0
+
+# 调度器（缺失时 run.py scheduler 自动退化为 stdlib 循环）
+APScheduler>=3.10.4
+
+# 回测增强（可选，建议独立 venv 安装，依赖激进）
+# pandas>=3.0.3
+# vectorbt>=1.1.0
